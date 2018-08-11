@@ -3,8 +3,12 @@
  Created:	8/10/2018 12:01:06 AM
  Author:	steve
 */
+#include "Motor.h"
 
 enum direction { forword, backword, regen, coast };
+void Drive(enum direction, int power);
+
+Motor Motor1;
 
 // the setup function runs once when you press reset or power the board
 void setup() {
@@ -17,4 +21,13 @@ void loop() {
 
 }
 
-void Drive(enum direction, int power);
+void Drive(enum direction, int power)
+{
+	int pos = Motor1.getPosition();
+
+	//*make table for angles and steps*
+	//use switch statment maybe??
+
+
+
+}

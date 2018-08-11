@@ -1,12 +1,9 @@
 #include "Motor.h"
 
 
-void Drive(enum direction, int power)
-{
-	
-	step
-	read
-	step
-}
 
+int Motor::getPosition()
+{
+	return 0;
+}
 
