@@ -18,6 +18,8 @@ void setup() {
 // the loop function runs over and over again until power down or reset
 void loop() {
   
+	Motor1.stepCW();
+
 
 }
 
@@ -28,6 +30,9 @@ void Drive(enum direction, int power)
 	//*make table for angles and steps*
 	//use switch statment maybe??
 
+	
+
 
 
 }
+
