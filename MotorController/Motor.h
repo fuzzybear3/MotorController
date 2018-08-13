@@ -6,17 +6,20 @@ class Motor
 {
 public:
 	Motor();
-
+	// pinList: WireXH, WireXL, WireYH, WireYL, WireZH, WireZL;
+	Motor(const int pinList[]); 
 	
 
 	int getPosition();
 	void stepCW();
 
-	enum step { step1, step2, step3, step4, step5, step6 };
-	step currentStep;
+	//enum step { step0, step1, step2, step3, step4, step5 };
+	//step currentStep = step0;
+	int currentStep = 0;
 private:
 
-	void setMotorStep(step inStep);
+	void setMotorStep(int inStep);
+	void Motor::setAllLow();
 
 	enum wireX { high, low, off };
 	enum wireY { high, low, off };
@@ -32,9 +35,4 @@ private:
 	
 };
 
-Motor::Motor()
-{
-	WireXH = 1
-		//finish this
 
-}
