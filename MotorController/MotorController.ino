@@ -9,7 +9,7 @@ enum direction { forword, backword, regen, coast };
 void Drive(enum direction, int power);
 
 const int MOTOR_PIN_LIST[6] = { 0,0,0,0,0,0 };
-condt int pot = 0;
+const int POT = 0;
 Motor Motor1(MOTOR_PIN_LIST);
 
 // the setup function runs once when you press reset or power the board
@@ -26,7 +26,7 @@ void setup() {
 // the loop function runs over and over again until power down or reset
 void loop() {
   
-	int input = analogRead(Pot);
+	int input = analogRead(POT);
 	input *= 5;
 
 	Motor1.stepCW();
