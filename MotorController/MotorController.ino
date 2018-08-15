@@ -10,6 +10,8 @@ void Drive(enum direction, int power);
 
 const int MOTOR_PIN_LIST[6] = { 0,0,0,0,0,0 };
 const int POT = 0;
+const int DELAY_MUTIPLIER = 5;
+
 Motor Motor1(MOTOR_PIN_LIST);
 
 // the setup function runs once when you press reset or power the board
@@ -27,7 +29,7 @@ void setup() {
 void loop() {
   
 	int input = analogRead(POT);
-	input *= 5;
+	input *= DelayMutiplayer;
 
 	Motor1.stepCW();
 	delayMicroseconds(input);
