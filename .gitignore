@@ -27,3 +27,4 @@ MotorController/__vm/Compile.vmps.xml
 *.elf
 *.hex
 *.xml
+*.vcxproj

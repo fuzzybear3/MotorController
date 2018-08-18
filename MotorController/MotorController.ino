@@ -4,6 +4,8 @@
  Author:	steve
 */
 #include "Motor.h"
+#include <Arduino.h>
+
 
 enum direction { forword, backword, regen, coast };
 void Drive(enum direction, int power);
