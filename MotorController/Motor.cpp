@@ -1,10 +1,9 @@
 #include "Motor.h"
+#include <Arduino.h>
 
 
 Motor::Motor()
 {
-	WireXH = 1;
-	//finish this
 
 }
 
@@ -56,7 +55,7 @@ void Motor::setMotorStep(int inStep)
 
 		break;
 
-	case 1:   // whu Mottor:: ?
+	case 1: 
 
 		setAllLow();
 
@@ -110,4 +109,6 @@ void Motor::setAllLow()
 	digitalWrite(WireYL, LOW);
 	digitalWrite(WireZH, LOW);
 	digitalWrite(WireZL, LOW);
+
+	delayMicroseconds(OFF_TIME_BUFFER);
 }

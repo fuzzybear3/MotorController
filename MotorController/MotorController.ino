@@ -7,8 +7,9 @@
 
 enum direction { forword, backword, regen, coast };
 void Drive(enum direction, int power);
-
-const int MOTOR_PIN_LIST[6] = { 0,0,0,0,0,0 };
+						//    0      1        2       3       4      5
+						// WireXH, WireXL, WireYH, WireYL, WireZH, WireZL,
+const int MOTOR_PIN_LIST[6] = { A2,6,A1,5,A0,4 }; 
 const int POT = 0;
 const int DELAY_MUTIPLIER = 5;
 
@@ -29,7 +30,7 @@ void setup() {
 void loop() {
   
 	int input = analogRead(POT);
-	input *= DelayMutiplayer;
+//	input *= DELAY_MUTIPLIER;
 
 	Motor1.stepCW();
 	delayMicroseconds(input);

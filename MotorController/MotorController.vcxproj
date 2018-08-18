@@ -50,7 +50,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir)..\MotorController;$(ProjectDir)..\..\..\..\Desktop\Apps\arduino-1.8.2\libraries;$(ProjectDir)..\..\..\..\Google Drive\Arduino\libraries;$(ProjectDir)..\..\..\..\Desktop\Apps\arduino-1.8.2\hardware\arduino\avr\libraries;$(ProjectDir)..\..\..\..\Desktop\Apps\arduino-1.8.2\hardware\arduino\avr\cores\arduino;$(ProjectDir)..\..\..\..\Desktop\Apps\arduino-1.8.2\hardware\arduino\avr\variants\eightanaloginputs;$(ProjectDir)..\..\..\..\Desktop\Apps\arduino-1.8.2\hardware\tools\avr\avr\include;$(ProjectDir)..\..\..\..\Desktop\Apps\arduino-1.8.2\hardware\tools\avr\avr\include\avr;$(ProjectDir)..\..\..\..\Desktop\Apps\arduino-1.8.2\hardware\tools\avr\lib\gcc\avr\4.8.1\include;$(ProjectDir)..\..\..\..\Desktop\Apps\arduino-1.8.2\hardware\tools\avr\lib\gcc\avr\4.9.2\include;$(ProjectDir)..\..\..\..\Desktop\Apps\arduino-1.8.2\hardware\tools\avr\lib\gcc\avr\4.9.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ProjectDir)__vm\.MotorController.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <PreprocessorDefinitions>__AVR_ATmega328p__;__AVR_ATmega328P__;F_CPU=16000000L;ARDUINO=10802;ARDUINO_AVR_NANO;ARDUINO_ARCH_AVR;__cplusplus=201103L;_VMICRO_INTELLISENSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__AVR_ATmega328p__;__AVR_ATmega328P__;_VMDEBUG=1;F_CPU=16000000L;ARDUINO=10802;ARDUINO_AVR_NANO;ARDUINO_ARCH_AVR;__cplusplus=201103L;_VMICRO_INTELLISENSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -59,10 +59,14 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\MotorController;$(ProjectDir)..\..\..\..\Desktop\Apps\arduino-1.8.2\libraries;$(ProjectDir)..\..\..\..\Google Drive\Arduino\libraries;$(ProjectDir)..\..\..\..\Desktop\Apps\arduino-1.8.2\hardware\arduino\avr\libraries;$(ProjectDir)..\..\..\..\Desktop\Apps\arduino-1.8.2\hardware\arduino\avr\cores\arduino;$(ProjectDir)..\..\..\..\Desktop\Apps\arduino-1.8.2\hardware\arduino\avr\variants\eightanaloginputs;$(ProjectDir)..\..\..\..\Desktop\Apps\arduino-1.8.2\hardware\tools\avr\avr\include;$(ProjectDir)..\..\..\..\Desktop\Apps\arduino-1.8.2\hardware\tools\avr\avr\include\avr;$(ProjectDir)..\..\..\..\Desktop\Apps\arduino-1.8.2\hardware\tools\avr\lib\gcc\avr\4.8.1\include;$(ProjectDir)..\..\..\..\Desktop\Apps\arduino-1.8.2\hardware\tools\avr\lib\gcc\avr\4.9.2\include;$(ProjectDir)..\..\..\..\Desktop\Apps\arduino-1.8.2\hardware\tools\avr\lib\gcc\avr\4.9.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ProjectDir)__vm\.MotorController.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <PreprocessorDefinitions>__AVR_ATmega328p__;__AVR_ATmega328P__;F_CPU=16000000L;ARDUINO=10802;ARDUINO_AVR_NANO;ARDUINO_ARCH_AVR;__cplusplus=201103L;_VMICRO_INTELLISENSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -91,4 +95,9 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties arduino.upload.port="COM3" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>
