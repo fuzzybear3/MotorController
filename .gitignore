@@ -28,3 +28,4 @@ MotorController/__vm/Compile.vmps.xml
 *.hex
 *.xml
 *.vcxproj
+MotorController/Release/MotorController.log

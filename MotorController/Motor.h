@@ -13,18 +13,13 @@ public:
 	int getPosition();
 	void stepCW();
 
-	//enum step { step0, step1, step2, step3, step4, step5 };
-	//step currentStep = step0;
+	void setMotorStep(int inStep);
 	int currentStep = 0;
 private:
 
-	const int OFF_TIME_BUFFER = 1;
-	void setMotorStep(int inStep);
+	const int OFF_TIME_BUFFER = 2;
+	
 	void Motor::setAllLow();
-
-	//enum wireX { high, low, off };
-	//enum wireY { high, low, off };
-	//enum wireZ { high, low, off };
 
 	int WireXH;
 	int WireXL;
@@ -33,6 +28,7 @@ private:
 	int WireZH;
 	int WireZL;
 
+	int oldTime;
 	
 };
 
