@@ -11,15 +11,17 @@ public:
 	
 
 	int getPosition();
-	void stepCW();
+	void stepCW(int delay, float dutyCycle);
 
-	void setMotorStep(int inStep);
+	void setMotorStep(int inStep, int delay, float dutyCycle);
 	int currentStep = 0;
 private:
 
 	const int OFF_TIME_BUFFER = 2;
+	const int DUTY_CYCLE_FREQ = 100; // microSeconds
 	
-	void Motor::setAllLow();
+	void setAllLow();
+	void pwm(int wire, int numLoops, int dutyCycle);
 
 	int WireXH;
 	int WireXL;
@@ -28,7 +30,6 @@ private:
 	int WireZH;
 	int WireZL;
 
-	int oldTime;
 	
 };
 

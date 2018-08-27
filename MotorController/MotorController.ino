@@ -32,18 +32,16 @@ void setup() {
 	pinMode(MOTOR_PIN_LIST[5], OUTPUT);
 	pinMode(2, OUTPUT);
 	
-	digitalWrite(4, HIGH);
-
-	Motor1.setMotorStep(0);
 }
 
 // the loop function runs over and over again until power down or reset
 void loop() {
   
-	int input = analogRead(POT);
+	 int input = analogRead(POT);
 	//input *= DELAY_MUTIPLIER;
 
-	map(input, 0, 1023, 10000, 1000000);
+	//map(input, 0, 1023, 100000, 10000000);
+	 map(input, 0, 1023, 50, 500);
 
 	//Serial.print("  analogRead: ");
 	//Serial.println(input);
@@ -51,10 +49,10 @@ void loop() {
 
 
 	
-	Motor1.stepCW();
+	Motor1.stepCW(input,1);
 	//Motor1.setMotorStep(input);
-	delayMicroseconds(input);
-
+	//delayMicroseconds(input);
+	//delay(input);
 
 }
 
