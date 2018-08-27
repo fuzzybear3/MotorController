@@ -1,5 +1,7 @@
+// Motor.cpp
 #include "Motor.h"
 #include <Arduino.h>
+
 
 
 Motor::Motor()
@@ -15,79 +17,18 @@ Motor::Motor(const int pinList[])
 	WireYH = pinList[2];
 	WireYL = pinList[3];
 	WireZH = pinList[4];
-	WireZL = pinList[5];	
+	WireZL = pinList[5];
 
 }
 
 
 int Motor::getPosition()
 {
-	return 0;
+	return currentStep;
 }
 
 void Motor::stepCW()
-{	// the time between steps is 120ms - 320ms.
-	// steps 1 and 2 seem to take longer then the rest.
-
-	/*	0:  120
-		1 : 320
-		2 : 320
-		3 : 124
-		4 : 124
-		5 : 124
-		0 : 120
-		1 : 316
-		2 : 320
-		3 : 124
-		4 : 124
-		5 : 124
-		0 : 120
-		1 : 312
-		2 : 312
-		3 : -23220
-		4 : 124
-		5 : 120
-		0 : 120
-		1 : 320
-		2 : 312
-		3 : 124
-		4 : 124
-		5 : 120
-		0 : 120
-		1 : 312
-		2 : 320
-		3 : 124
-		4 : 124
-		5 : 120
-		0 : 120
-		1 : 312
-		2 : 312
-		3 : 124
-		4 : 124
-		5 : 124
-		0 : 120
-		1 : 316
-		2 : -23048 // debugger output delay
-		3 : 124
-		4 : 124
-		5 : 124
-		0 : 120
-		1 : 324
-		2 : 312
-		3 : 124
-		4 : 124
-		5 : 124
-		0 : 120
-		1 : 316
-		2 : 320
-		3 : 116
-		4 : 124
-		5 : 120
-		0 : 120
-		1 : 312
-		2 : 312
-		3 : 124
-		4 : 11*/
+{
 	if (currentStep < 5)
 	{
 		currentStep++;
@@ -96,18 +37,11 @@ void Motor::stepCW()
 	{
 		currentStep = 0;
 	}
-	/*int time = micros() - oldTime;
 
-	Serial.print(currentStep);
-	Serial.print(":  ");
-	Serial.println(time);
 	setMotorStep(currentStep);
-
-	oldTime = micros();*/
-
 }
 
-void Motor::setMotorStep(int inStep)
+void Motor::setMotorStep(int step)
 {
 
 	switch (inStep)
@@ -121,7 +55,7 @@ void Motor::setMotorStep(int inStep)
 
 		break;
 
-	case 1: 
+	case 1:
 
 		setAllLow();
 
