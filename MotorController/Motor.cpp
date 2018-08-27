@@ -15,7 +15,7 @@ Motor::Motor(const int pinList[])
 	WireYH = pinList[2];
 	WireYL = pinList[3];
 	WireZH = pinList[4];
-	WireZL = pinList[5];
+	WireZL = pinList[5];	
 
 }
 

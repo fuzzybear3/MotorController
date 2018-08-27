@@ -14,7 +14,7 @@ void Drive(enum direction, int power);
 						// WireXH, WireXL, WireYH, WireYL, WireZH, WireZL,
 const int MOTOR_PIN_LIST[6] = { A2,6,A1,5,A0,4 }; 
 const int POT = A7;
-const int DELAY_MUTIPLIER = 1;
+const int DELAY_MUTIPLIER = 16;
 
 Motor Motor1(MOTOR_PIN_LIST);
 
@@ -43,22 +43,18 @@ void loop() {
 	int input = analogRead(POT);
 	//input *= DELAY_MUTIPLIER;
 
-	map(input, 0, 1023, 0, 5);
+	map(input, 0, 1023, 10000, 1000000);
 
 	//Serial.print("  analogRead: ");
 	//Serial.println(input);
 	
-	//digitalWrite(2, HIGH);
+
 
 	
-
-	digitalWrite(13, HIGH);
-	//Motor1.stepCW();
-//	Motor1.setMotorStep(0);
-	digitalWrite(13, LOW);
+	Motor1.stepCW();
+	//Motor1.setMotorStep(input);
 	delayMicroseconds(input);
 
-	//digitalWrite(2, LOW);
 
 }
 
