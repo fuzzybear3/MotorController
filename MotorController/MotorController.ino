@@ -16,6 +16,7 @@ const int MOTOR_PIN_LIST[6] = { A2,6,A1,5,A0,4 };
 const int POT = A7;
 const int DELAY_MUTIPLIER = 16;
 
+
 Motor Motor1(MOTOR_PIN_LIST);
 
 // the setup function runs once when you press reset or power the board
@@ -32,27 +33,25 @@ void setup() {
 	pinMode(MOTOR_PIN_LIST[5], OUTPUT);
 	pinMode(2, OUTPUT);
 	
+	
+
 }
 
 // the loop function runs over and over again until power down or reset
 void loop() {
   
-	 int input = analogRead(POT);
-	//input *= DELAY_MUTIPLIER;
+	int speed = analogRead(POT);
+	
+	double torque = 1;
+	map(speed, 0, 1023, 50, 500);
 
-	//map(input, 0, 1023, 100000, 10000000);
-	 map(input, 0, 1023, 50, 500);
-
-	//Serial.print("  analogRead: ");
-	//Serial.println(input);
+	unsigned long time = micros()
 	
 
+	 if(
 
 	
-	Motor1.stepCW(input,1);
-	//Motor1.setMotorStep(input);
-	//delayMicroseconds(input);
-	//delay(input);
+	//Motor1.spinCW(speed,1);
 
 }
 

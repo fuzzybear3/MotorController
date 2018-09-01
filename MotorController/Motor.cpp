@@ -1,5 +1,8 @@
-#include "Motor.h"
 #include <Arduino.h>
+#include "Motor.h"
+
+
+
 
 
 Motor::Motor()
@@ -25,18 +28,16 @@ int Motor::getPosition()
 	return 0;
 }
 
-void Motor::stepCW(int delay, float dutyCycle)
+void Motor::spinCW(int speed, float torque)
 {	
-	if (currentStep < 5)
-	{
-		currentStep++;
-	}
-	else
-	{
-		currentStep = 0;
-	}
+	Motor1.clacPhaseTriggers();
 	
-	setMotorStep(currentStep, delay, dutyCycle);
+	while (1)
+	{
+
+
+	}
+
 
 
 }
@@ -146,4 +147,18 @@ void Motor::pwm(int wire, int numLoops, int dutyCycle)
 
 	}
 
+
+
+
+
+}
+
+
+bool Motor::clacPhaseState(int phase, int freq )
+{
+	int time = micros() % INTERVAL;
+	
+	int dutyCycle = torque * (sin((freq * time) + (2 * PI)));
+
+	return ((double(time) / INTERVAL) < dutyCycle);
 }
