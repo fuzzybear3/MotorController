@@ -42,15 +42,9 @@ void loop() {
   
 	int speed = analogRead(POT);
 	
-	double torque = 1;
-	map(speed, 0, 1023, 50, 500);
-
-	unsigned long time = micros();
-	
-	
-
-	
-	//Motor1.spinCW(speed,1);
+	//double torque = 1;
+	//map(speed, 0, 1023, 50, 500);
+	Motor1.spinCW(speed,1);
 
 }
 
