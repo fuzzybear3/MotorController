@@ -8,7 +8,7 @@
 
 
 
-enum direction { forword, backword, regen, coast };
+enum direction { forward, backward, regen, coast };
 void Drive(enum direction, int power);
 						//    0      1        2       3       4      5
 						// WireXH, WireXL, WireYH, WireYL, WireZH, WireZL,
@@ -45,10 +45,9 @@ void loop() {
 	double torque = 1;
 	map(speed, 0, 1023, 50, 500);
 
-	unsigned long time = micros()
+	unsigned long time = micros();
 	
-
-	 if(
+	
 
 	
 	//Motor1.spinCW(speed,1);

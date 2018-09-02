@@ -1,9 +1,20 @@
 #pragma once
 
-struct phase {
-	int onTime;
-	int offTime;
+enum phaseState
+{	
+	high, off, low
 };
+
+struct phase
+{
+	phaseState nextState;
+	phaseState currentState;
+	short phState;
+	int phaseNum;
+	int phaseHPin;
+	int phaseLPin;
+};
+
 
 class Motor
 {
@@ -12,32 +23,32 @@ public:
 	// pinList: WireXH, WireXL, WireYH, WireYL, WireZH, WireZL;
 	Motor(const int pinList[]); 
 	
-	bool clacPhaseState(int phase, int freq);
+	
 	int getPosition();
 	void spinCW(int speed, float torque);
 
-	void setMotorStep(int inStep, int delay, float dutyCycle);
+
+	phase clacPhaseState(phase inPhase, int freq);
+	void setPhaseState(phase &inPhase);
 	int currentStep = 0;
 private:
 
-	const int OFF_TIME_BUFFER = 2;
+	const int SWITCH_BUFFER = 1;
 	const int DUTY_CYCLE_FREQ = 100; // microSeconds
 	const int INTERVAL = 200; // microSeconds
 	
 	double torque = 1;
-
-	void setAllLow();
 	
-	void pwm(int wire, int numLoops, int dutyCycle);
 
-	int WireXH;
-	int WireXL;
+	
 	int WireYH;
 	int WireYL;
 	int WireZH;
 	int WireZL;
 
-
+	phase phaseX;
+	phase phaseY;
+	phase phaseZ;
 
 	//unsigned int time = 0;
 
@@ -45,5 +56,4 @@ private:
 	
 
 };
-
 
