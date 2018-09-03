@@ -5,29 +5,19 @@
 
 class Motor
 {
-public:
+    public:
 
-	Motor();
-	// pinList: WireXH, WireXL, WireYH, WireYL, WireZH, WireZL;
-	Motor(const int pinList[]);
+    	Motor();
+    	Motor(const int pinList[]); // WireXH, WireXL, WireYH, WireYL, WireZH, WireZL;
 
-	int getPosition();
-	void stepCW();
+    	void run(int delayTime, int dutyCycle);
 
-	void setMotorStep(int inStep);
+    private:
 
-private:
-
-	const int OFF_TIME_BUFFER = 2;
-
-	void Motor::setAllLow();
-
-	int WireXH;
-	int WireXL;
-	int WireYH;
-	int WireYL;
-	int WireZH;
-	int WireZL;
-
-	int currentStep = 0;
+    	int WireXH;
+    	int WireXL;
+    	int WireYH;
+    	int WireYL;
+    	int WireZH;
+    	int WireZL;
 };

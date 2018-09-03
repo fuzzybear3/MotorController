@@ -2,113 +2,76 @@
 #include "Motor.h"
 #include <Arduino.h>
 
-
-
-Motor::Motor()
+void Motor::run(int torque, int speed)
 {
+    int t = getMicroseconds();
 
-}
+    int dutyX = CYCLE * torque * sin(speed * t);
+    int dutyY = CYCLE * torque * sin(speed * t + 2 * PI / 3);
+    int dutyZ = CYCLE * torque * sin(speed * t + 4 * PI / 3);
 
+    digitalWrite(dutyX > 0 ? WireXH : WireXL, HIGH);
+    digitalWrite(dutyY > 0 ? WireYH : WireYL, HIGH);
+    digitalWrite(dutyZ > 0 ? WireZH : WireZL, HIGH);
 
-Motor::Motor(const int pinList[])
-{
-	WireXH = pinList[0];
-	WireXL = pinList[1];
-	WireYH = pinList[2];
-	WireYL = pinList[3];
-	WireZH = pinList[4];
-	WireZL = pinList[5];
+    if (dutyX <= dutyY <= dutyZ) {
 
-}
+        delayMicroseconds(dutyX);
+        digitalWrite(dutyX > 0 ? WireXH : WireXL, LOW);
+        delayMicroseconds(dutyY - dutyX);
+        digitalWrite(dutyY > 0 ? WireYH : WireYL, LOW);
+        delayMicroseconds(dutyZ - dutyY);
+        digitalWrite(dutyZ > 0 ? WireZH : WireZL, LOW);
+        delayMicroseconds(CYCLE - dutyZ);
 
+    } else if (dutyX <= dutyZ <= dutyY) {
 
-int Motor::getPosition()
-{
-	return currentStep;
-}
+        delayMicroseconds(dutyX);
+        digitalWrite(dutyX > 0 ? WireXH : WireXL, LOW);
+        delayMicroseconds(dutyZ - dutyX);
+        digitalWrite(dutyZ > 0 ? WireZH : WireZL, LOW);
+        delayMicroseconds(dutyY - dutyZ);
+        digitalWrite(dutyY > 0 ? WireYH : WireYL, LOW);
+        delayMicroseconds(CYCLE - dutyY);
 
-void Motor::stepCW()
-{
-	if (currentStep < 5)
-	{
-		currentStep++;
-	}
-	else
-	{
-		currentStep = 0;
-	}
+    } else if (dutyY <= dutyX <= dutyZ) {
 
-	setMotorStep(currentStep);
-}
+        delayMicroseconds(dutyY);
+        digitalWrite(dutyY > 0 ? WireYH : WireYL, LOW);
+        delayMicroseconds(dutyX - dutyY);
+        digitalWrite(dutyX > 0 ? WireXH : WireXL, LOW);
+        delayMicroseconds(dutyZ - dutyX);
+        digitalWrite(dutyZ > 0 ? WireZH : WireZL, LOW);
+        delayMicroseconds(CYCLE - dutyZ);
 
-void Motor::setMotorStep(int step)
-{
+    } else if (dutyY <= dutyZ <= dutyX) {
 
-	switch (inStep)
-	{
-	case 0:
+        delayMicroseconds(dutyY);
+        digitalWrite(dutyY > 0 ? WireYH : WireYL, LOW);
+        delayMicroseconds(dutyZ - dutyY);
+        digitalWrite(dutyZ > 0 ? WireZH : WireZL, LOW);
+        delayMicroseconds(dutyX - dutyZ);
+        digitalWrite(dutyX > 0 ? WireXH : WireXL, LOW);
+        delayMicroseconds(CYCLE - dutyX);
 
-		setAllLow();
+    } else if (dutyZ <= dutyX <= dutyY) {
 
-		digitalWrite(WireZH, HIGH);
-		digitalWrite(WireYL, HIGH);
+        delayMicroseconds(dutyZ);
+        digitalWrite(dutyZ > 0 ? WireZH : WireZL, LOW);
+        delayMicroseconds(dutyX - dutyZ);
+        digitalWrite(dutyX > 0 ? WireXH : WireXL, LOW);
+        delayMicroseconds(dutyY - dutyX);
+        digitalWrite(dutyY > 0 ? WireYH : WireYL, LOW);
+        delayMicroseconds(CYCLE - dutyY);
 
-		break;
+    } else /*if (dutyZ <= dutyY <= dutyX)*/ {
 
-	case 1:
-
-		setAllLow();
-
-		digitalWrite(WireXH, HIGH);
-		digitalWrite(WireYL, HIGH);
-		break;
-
-	case 2:
-
-		setAllLow();
-
-		digitalWrite(WireXH, HIGH);
-		digitalWrite(WireZL, HIGH);
-
-		break;
-	case 3:
-
-		setAllLow();
-
-		digitalWrite(WireYH, HIGH);
-		digitalWrite(WireZL, HIGH);
-
-		break;
-	case 4:
-
-		setAllLow();
-
-		digitalWrite(WireYH, HIGH);
-		digitalWrite(WireXL, HIGH);
-
-		break;
-	case 5:
-
-		setAllLow();
-
-		digitalWrite(WireZH, HIGH);
-		digitalWrite(WireXL, HIGH);
-
-		break;
-	}
-
-
-}
-
-void Motor::setAllLow()
-{
-
-	digitalWrite(WireXH, LOW);
-	digitalWrite(WireXL, LOW);
-	digitalWrite(WireYH, LOW);
-	digitalWrite(WireYL, LOW);
-	digitalWrite(WireZH, LOW);
-	digitalWrite(WireZL, LOW);
-
-	delayMicroseconds(OFF_TIME_BUFFER);
+        delayMicroseconds(dutyZ);
+        digitalWrite(dutyZ > 0 ? WireZH : WireZL, LOW);
+        delayMicroseconds(dutyY - dutyZ);
+        digitalWrite(dutyY > 0 ? WireYH : WireYL, LOW);
+        delayMicroseconds(dutyX - dutyY);
+        digitalWrite(dutyX > 0 ? WireXH : WireXL, LOW);
+        delayMicroseconds(CYCLE - dutyX);
+    }
 }
