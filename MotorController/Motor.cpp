@@ -4,7 +4,6 @@
 
 
 
-
 Motor::Motor()
 {
 
@@ -34,13 +33,13 @@ void Motor::spinCW(int speed, float torque)
 {	
 
 
-		phaseX = Motor1.clacPhaseState(phaseX, speed);
-		phaseY = Motor1.clacPhaseState(phaseY, speed);
-		phaseZ = Motor1.clacPhaseState(phaseZ, speed);
+		phaseX = clacPhaseState(phaseX, speed);
+		phaseY = clacPhaseState(phaseY, speed);
+		phaseZ = clacPhaseState(phaseZ, speed);
 	
-		Motor1.setPhaseState(phaseX);
-		Motor1.setPhaseState(phaseY);
-		Motor1.setPhaseState(phaseZ);
+		setPhaseState(phaseX);
+		setPhaseState(phaseY);
+		setPhaseState(phaseZ);
 }
 
 
@@ -52,11 +51,11 @@ phase Motor::clacPhaseState(phase inPhase, int freq)
 {
 	int time = micros() % INTERVAL;
 	
-	double sinWave = sin((freq * time) + (2 * PI));
-
+	double sinWave = sin((freq * micros()) +  ( (inPhase.phaseNum * (2 * PI) )/3) );
+	
 	double dutyCycle = torque * sinWave;
 
-	if ((double(time) / INTERVAL) < dutyCycle)
+	if ((double(time) / INTERVAL) > dutyCycle)
 	{
 		if (sinWave > 0)
 		{
@@ -82,22 +81,21 @@ void Motor::setPhaseState(phase &inPhase)
 	switch (inPhase.nextState)
 	{
 
-	case high: {
-		digitalWrite(inPhase.phaseLPin, LOW);
-		digitalWrite(inPhase.phaseHPin, HIGH);
-	}
+		case high: {
+			digitalWrite(inPhase.phaseLPin, LOW);
+			digitalWrite(inPhase.phaseHPin, HIGH);
+		}
 
-	case low: {
-		digitalWrite(inPhase.phaseHPin, LOW);
-		digitalWrite(inPhase.phaseLPin, HIGH);
-	}
+		case low: {
+			digitalWrite(inPhase.phaseHPin, LOW);
+			digitalWrite(inPhase.phaseLPin, HIGH);
+		}
 
-	case off: {
+		case off: {
+
+			digitalWrite(inPhase.phaseHPin, LOW);
+			digitalWrite(inPhase.phaseLPin, LOW);
+		}
 
 	}
-		digitalWrite(inPhase.phaseHPin, LOW);
-		digitalWrite(inPhase.phaseLPin, LOW);
-	}
-	
-	
 }

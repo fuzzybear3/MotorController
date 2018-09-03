@@ -48,16 +48,16 @@ void loop() {
 
 }
 
-void Drive(enum direction, int power)
-{
-	int pos = Motor1.getPosition();
-
-	//*make table for angles and steps*
-	//use switch statment maybe??
-
-	
-
-
-
-}
+//void Drive(enum direction, int power)
+//{
+//	int pos = Motor1.getPosition();
+//
+//	//*make table for angles and steps*
+//	//use switch statment maybe??
+//
+//	
+//
+//
+//
+//}
 

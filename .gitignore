@@ -29,3 +29,5 @@ MotorController/__vm/Compile.vmps.xml
 *.xml
 *.vcxproj
 MotorController/Release/MotorController.log
+MotorController/MotorController.sln
+MotorController/MotorController.vcxproj

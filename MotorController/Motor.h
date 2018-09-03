@@ -30,12 +30,12 @@ public:
 
 	phase clacPhaseState(phase inPhase, int freq);
 	void setPhaseState(phase &inPhase);
-	int currentStep = 0;
+
 private:
 
 	const int SWITCH_BUFFER = 1;
 	const int DUTY_CYCLE_FREQ = 100; // microSeconds
-	const int INTERVAL = 200; // microSeconds
+	const int INTERVAL = 10000; // microSeconds
 	
 	double torque = 1;
 	
