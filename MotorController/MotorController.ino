@@ -8,9 +8,7 @@
 // WireXH, WireXL, WireYH, WireYL, WireZH, WireZL,
 const int MOTOR_PIN_LIST[6] = { A2, 6, A1, 5, A0, 4 };
 const int TORQUE_PIN = A7;
-const int SPEED_PIN = A8;
-const int CYCLE = 100;
-const double PI = 3.14159265359;
+const int SPEED_PIN = A6;
 
 Motor Motor1(MOTOR_PIN_LIST);
 
@@ -38,5 +36,5 @@ void loop()
     double torque = torqueInput / 1023.0;
     double speed = speedInput / 1023.0;
 
-	motor.run(torque, speed);
+	Motor1.run(torque, speed);
 }

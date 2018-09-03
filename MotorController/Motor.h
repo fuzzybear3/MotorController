@@ -14,6 +14,9 @@ class Motor
 
     private:
 
+      const int CYCLE = 100;
+      const double PI = 3.14159265359;
+
     	int WireXH;
     	int WireXL;
     	int WireYH;

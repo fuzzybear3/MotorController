@@ -2,9 +2,27 @@
 #include "Motor.h"
 #include <Arduino.h>
 
+
+Motor::Motor()
+{
+
+}
+
+
+Motor::Motor(const int pinList[])
+{
+	WireXH = pinList[0];
+	WireXL = pinList[1];
+	WireYH = pinList[2];
+	WireYL = pinList[3];
+	WireZH = pinList[4];
+	WireZL = pinList[5];
+}
+
+
 void Motor::run(int torque, int speed)
 {
-    int t = getMicroseconds();
+    int t = micros();
 
     int dutyX = CYCLE * torque * sin(speed * t);
     int dutyY = CYCLE * torque * sin(speed * t + 2 * PI / 3);
